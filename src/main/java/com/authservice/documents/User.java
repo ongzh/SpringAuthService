@@ -11,11 +11,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Document(collection="users")
 public class User {
 
     @Id
-    private Long id;
+    private String id;
     private String name;
     private String username;
     private String password;

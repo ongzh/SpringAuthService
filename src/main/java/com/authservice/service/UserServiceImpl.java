@@ -6,16 +6,22 @@ import com.authservice.repository.RoleRepository;
 import com.authservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
 public class UserServiceImpl implements UserService{
+
+    @Autowired
     private final UserRepository userRepo;
-    private final RoleRepository roleRepo
+    @Autowired
+    private final RoleRepository roleRepo;
 
     @Override
     public User saveUser(User user) {
@@ -34,12 +40,19 @@ public class UserServiceImpl implements UserService{
         User user = userRepo.findByUsername(username);
         Role role = roleRepo.findByName(roleName);
         user.getRoles().add(role);
-
+        userRepo.save(user);
+        log.info("adding new role {} to user {}", roleName, username);
     }
 
     @Override
     public User getUser(String username) {
         log.info("Fetching user {}", username);
         return userRepo.findByUsername(username);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        log.info("Fetching all users");
+        return userRepo.findAll();
     }
 }

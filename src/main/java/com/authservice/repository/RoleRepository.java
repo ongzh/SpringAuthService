@@ -2,7 +2,9 @@ package com.authservice.repository;
 
 import com.authservice.documents.Role;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-public interface RoleRepository extends MongoRepository<Role,Long> {
+@Repository
+public interface RoleRepository extends MongoRepository<Role,String> {
     Role findByName(String name);
 }
