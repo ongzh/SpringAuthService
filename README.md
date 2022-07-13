@@ -1,0 +1,3 @@
+# SpringAuthService
+
+Basic Spring Security
