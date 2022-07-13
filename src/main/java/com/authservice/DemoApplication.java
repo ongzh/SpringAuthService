@@ -22,6 +22,7 @@ public class DemoApplication {
 	}
 
 
+	/*
 	@Bean
 	CommandLineRunner run(UserService userService) {
 		return args -> {
@@ -41,6 +42,7 @@ public class DemoApplication {
 			//userService.addRoleToUser("will", "ROLE_MANAGER");
 		};
 	}
+	 */
 
 	@Bean
 	PasswordEncoder passwordEncoder(){
